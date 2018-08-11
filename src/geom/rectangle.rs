@@ -101,6 +101,13 @@ impl From<AABB<f32>> for Rectangle {
     }
 }
 
+#[cfg(feature="ncollide2d")]
+impl From<Rectangle> for AABB<f32> {
+    fn from(other: Rectangle) -> AABB<f32> {
+        AABB::new(other.top_left().into(), (other.top_left() + other.size()).into())
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use geom::*;

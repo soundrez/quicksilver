@@ -266,6 +266,13 @@ impl From<Point2<f32>> for Vector {
     }
 }
 
+#[cfg(feature="nalgebra")]
+impl From<Vector> for Point2<f32> {
+    fn from(other: Vector) -> Point2<f32> {
+        Point2::new(other.x, other.y)
+    }
+}
+
 #[cfg(not(target_arch = "wasm32"))]
 impl From<Vector> for LogicalPosition {
     fn from(other: Vector) -> LogicalPosition {
